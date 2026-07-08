@@ -1,12 +1,19 @@
-let firstCard = 10;
-let secondCard = 4;
-let cards=[firstCard,secondCard]// array - ordered list of items
+let firstCard = getRandomCard();
+let secondCard = getRandomCard();
+// 1. Create a new array - cards - that contains firstCard and secondCard
+let cards = [firstCard, secondCard]; // array - ordered list of items
 let sum = firstCard + secondCard;
 let hasBlackJack = false;
 let isAlive = true;
 let message = "";
 let messageEl = document.getElementById("message-el");
 let sumEl = document.getElementById("sum-el");
+
+// Make this function return a random number between 1 and 13
+function getRandomCard() {
+  return Math.floor(Math.random() * 13) + 1; // 1-13
+}
+
 // 2. Store the cards paragraph in a variable called cardsEl
 let cardsEl = document.getElementById("cards-el");
 // Create a new function called startGame() that calls renderGame()
@@ -15,9 +22,14 @@ function startGame() {
 }
 
 function renderGame() {
-  // render out firstCard and secondCard
-  cardsEl.textContent = "Cards: " + firstCard + " " + secondCard;
-// render out ALL the cards we have
+  // 2. Refer to the cards array when rendering out the cards
+  cardsEl.textContent = "Cards: ";
+  // Create a for loop that renders out all the cards instead of just two
+  for (let i = 0; i < cards.length; i++) {
+    cardsEl.textContent += cards[i] + " ";
+  }
+
+  // render out ALL the cards we have
   sumEl.textContent = "Sum: " + sum;
   if (sum <= 20) {
     message = "Do you want to draw a new card?";
@@ -30,13 +42,12 @@ function renderGame() {
   }
   messageEl.textContent = message;
 }
-// 2. Create a function newCard() that logs out "Drawing a new card from the deck!"
+// 3. Use the getRandomCard() to set the value of card
 function newCard() {
-  console.log("Drawing a new card from the deck!");
-  // 1. Create a card variable, and hard code its value to a number (2-11)
-  let card = 7;
-  // 2. Add the new card to the sum variable
+  let card = getRandomCard();
   sum += card;
-  // 3. Call startGame()
-  startGame();
+  // Push the card to the cards array
+  cards.push(card);
+  console.log(cards);
+  renderGame();
 }
