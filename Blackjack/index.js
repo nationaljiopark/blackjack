@@ -1,23 +1,32 @@
-let firstCard = getRandomCard();
-let secondCard = getRandomCard();
-// 1. Create a new array - cards - that contains firstCard and secondCard
-let cards = [firstCard, secondCard]; // array - ordered list of items
-let sum = firstCard + secondCard;
+let cards = []; // array - ordered list of items
+let sum = 0;
 let hasBlackJack = false;
-let isAlive = true;
+let isAlive = fulse;
 let message = "";
 let messageEl = document.getElementById("message-el");
 let sumEl = document.getElementById("sum-el");
+let cardsEl = document.getElementById("cards-el");
+console.log(cards);
 
-// Make this function return a random number between 1 and 13
 function getRandomCard() {
-  return Math.floor(Math.random() * 13) + 1; // 1-13
+  let randomNumber = Math.floor(Math.random() * 13) + 1;
+  if (randomNumber > 10) {
+    return 10;
+  } else if (randomNumber === 1) {
+    return11;
+  } else {
+    return randomNumber;
+  }
 }
 
-// 2. Store the cards paragraph in a variable called cardsEl
-let cardsEl = document.getElementById("cards-el");
-// Create a new function called startGame() that calls renderGame()
 function startGame() {
+  isAlive = true;
+  // Generate two random numbes
+  let firstCard = getRandomCard();
+  let secondCard = getRandomCard();
+  cards = [firstCard, secondCard];
+  sum = firstCard + secondCard;
+  // Re-assign the cards and sum variables so that the game can start
   renderGame();
 }
 
